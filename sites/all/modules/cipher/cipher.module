@@ -76,8 +76,9 @@
         $_SESSION['phrase'] = $phrase;
 
         $shift = (int) $shift;
-        if($direction == "l" || $direction = "left"){
+        if($direction == "l" || $direction == "left"){
             $shift *= -1;
+            $_SESSION['shift'] = $shift;
         }
 
         $phrase = str_split($phrase);
