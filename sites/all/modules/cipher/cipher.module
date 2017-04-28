@@ -24,6 +24,7 @@
             '#title' => 'Shift value',
             '#type' => 'textfield',
             '#element_validate' => ['element_validate_integer_positive'],
+            '#required' => TRUE,
             // '#value' => '3',
             '#description' => t('Positive integers only.'),
         ];
@@ -31,6 +32,7 @@
             '#title' => 'Direction',
             '#type' => 'textfield',
             '#element_validate' => ['element_validate_direction'],
+            '#required' => TRUE,
             // '#value' => 'r',
             '#description' => t('Acceptable input(case insensitive): R, L, RIGHT, LEFT'),
         ];
@@ -38,6 +40,7 @@
             '#title' => 'Phrase to be encrypted',
             '#type' => 'textfield',
             '#element_validate' => ['element_validate_phrase'],
+            '#required' => TRUE,
             // '#value' => 'hello',
             //'#description' => t('something descriptive here'),
         ];
