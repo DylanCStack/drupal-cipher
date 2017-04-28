@@ -85,7 +85,7 @@
         $output = '';
         foreach($phrase as $letter){
             if(preg_match("/[a-z]/",$letter)){
-                $output .= $alphabet[abs(array_search($letter, $alphabet) + $shift) % 26];
+                $output .= $alphabet[abs((array_search($letter, $alphabet) + $shift + 26) % 26)];
             } else {
                 $output .= $letter;
             }
