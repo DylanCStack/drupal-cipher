@@ -30,8 +30,9 @@
         $form['direction'] = [
             '#title' => 'Direction',
             '#type' => 'textfield',
+            '#element_validate' => ['element_validate_direction'],
             // '#value' => 'r',
-            '#description' => t('Acceptable input(case insensitive): R, L, RIGHT, LEFT, PLUS, MINUS, +, -'),
+            '#description' => t('Acceptable input(case insensitive): R, L, RIGHT, LEFT'),
         ];
         $form['phrase'] = [
             '#title' => 'Phrase to be encrypted',
@@ -46,6 +47,12 @@
         ];
 
         return $form;
+    }
+    function element_validate_direction($element){
+        $direction = drupal_strtolower($element['#value']);
+        if(!($direction == 'l' || $direction == "left" || $direction == "r" || $direction == "right")) {
+            form_error($element, t('Direction must be R, L, RIGHT,  or LEFT.'));
+        }
     }
 
 
@@ -62,7 +69,7 @@
         $_SESSION['phrase'] = $phrase;
 
         $shift = (int) $shift;
-        if($direction == "l"){
+        if($direction == "l" || $direction = "left"){
             $shift *= -1;
         }
 
