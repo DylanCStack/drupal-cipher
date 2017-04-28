@@ -23,8 +23,9 @@
         $form['shift'] = [
             '#title' => 'Shift value',
             '#type' => 'textfield',
+            '#element_validate' => ['element_validate_integer_positive'],
             // '#value' => '3',
-            //'#description' => t('something descriptive here'),
+            '#description' => t('Positive integers only.'),
         ];
         $form['direction'] = [
             '#title' => 'Direction',
@@ -69,7 +70,7 @@
         $output = '';
         foreach($phrase as $letter){
             if(preg_match("/[a-z]/",$letter)){
-                $output .= $alphabet[abs(array_search($letter, $alphabet) + $shift) % 25];
+                $output .= $alphabet[abs(array_search($letter, $alphabet) + $shift) % 26];
             } else {
                 $output .= $letter;
             }
