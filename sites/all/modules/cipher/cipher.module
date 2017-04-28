@@ -7,27 +7,35 @@
             'page callback' => 'drupal_get_form',
             'page arguments' => ['cipher_form'],
             'access callback' => TRUE,
-            'type' => MENU_NORMAL_ITEM
+            'type' => MENU_NORMAL_ITEM,
+        ];
+        $items['encrypted_message'] = [
+            'title' => "Shift Cipher",
+            'page callback' => 'display_cipher',
+            'access callback' => TRUE,
+            'type' => MENU_CALLBACK,
         ];
 
         return $items;
     }
 
-
     function cipher_form(){
-        $form['shift value'] = [
+        $form['shift'] = [
             '#title' => 'Shift value',
             '#type' => 'textfield',
+            // '#value' => '3',
             //'#description' => t('something descriptive here'),
         ];
         $form['direction'] = [
             '#title' => 'Direction',
             '#type' => 'textfield',
-            //'#description' => t('something descriptive here'),
+            // '#value' => 'r',
+            '#description' => t('Acceptable input(case insensitive): R, L, RIGHT, LEFT, PLUS, MINUS, +, -'),
         ];
         $form['phrase'] = [
             '#title' => 'Phrase to be encrypted',
             '#type' => 'textfield',
+            // '#value' => 'hello',
             //'#description' => t('something descriptive here'),
         ];
 
@@ -37,4 +45,46 @@
         ];
 
         return $form;
+    }
+
+
+    function cipher_form_submit($form, &$form_state){
+        $alphabet = range("a","z");
+        $_SESSION['letters'] = $alphabet;
+
+        $shift = drupal_strtolower($form_state['values']['shift']);
+        $direction = drupal_strtolower($form_state['values']['direction']);
+        $phrase = drupal_strtolower($form_state['values']['phrase']);
+
+        $_SESSION['shift'] = $shift;
+        $_SESSION['direction'] = $direction;
+        $_SESSION['phrase'] = $phrase;
+
+        $shift = (int) $shift;
+        if($direction == "l"){
+            $shift *= -1;
+        }
+
+        $phrase = str_split($phrase);
+        $output = '';
+        foreach($phrase as $letter){
+            // if($letter){
+                $output .= $alphabet[abs(array_search($letter, $alphabet) + $shift) % 25];
+            // }
+        }
+
+        $_SESSION['output'] = $output;
+        // $_SESSION['output'] = implode($phrase);
+        $form_state['redirect'] = 'encrypted_message';
+    }
+
+    function display_cipher(){
+        // var_dump($_SESSION['alphabet']);
+        return "<p>Your encrypted phrase is '" . $_SESSION['output'] . "'</p>
+        <ul>
+            <li>SHIFT: ".$_SESSION['shift']."</li>
+            <li>DIRECTION: ".$_SESSION['direction']."</li>
+            <li>PHRASE: ".$_SESSION['phrase']."</li>
+        </ul>
+        ";
     }
