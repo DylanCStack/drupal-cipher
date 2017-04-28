@@ -37,6 +37,7 @@
         $form['phrase'] = [
             '#title' => 'Phrase to be encrypted',
             '#type' => 'textfield',
+            '#element_validate' => ['element_validate_phrase'],
             // '#value' => 'hello',
             //'#description' => t('something descriptive here'),
         ];
@@ -52,6 +53,12 @@
         $direction = drupal_strtolower($element['#value']);
         if(!($direction == 'l' || $direction == "left" || $direction == "r" || $direction == "right")) {
             form_error($element, t('Direction must be R, L, RIGHT,  or LEFT.'));
+        }
+    }
+    function element_validate_phrase($element){
+        $phrase = drupal_strtolower($element['#value']);
+        if(preg_match("/[^\w\s\.\,\!\?]/", $phrase)) {
+            form_error($element, t('You can only encrypt a phrase containing letters, numbers, and normal punctuation.'));
         }
     }
 
