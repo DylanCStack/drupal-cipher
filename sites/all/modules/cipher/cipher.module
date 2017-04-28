@@ -5,10 +5,36 @@
         $items['cipher'] = [
             'title' => "Shift Cipher",
             'page callback' => 'drupal_get_form',
-            'page arguments' => 'cipher_form',
+            'page arguments' => ['cipher_form'],
             'access callback' => TRUE,
             'type' => MENU_NORMAL_ITEM
         ];
 
         return $items;
+    }
+
+
+    function cipher_form(){
+        $form['shift value'] = [
+            '#title' => 'Shift value',
+            '#type' => 'textfield',
+            //'#description' => t('something descriptive here'),
+        ];
+        $form['direction'] = [
+            '#title' => 'Direction',
+            '#type' => 'textfield',
+            //'#description' => t('something descriptive here'),
+        ];
+        $form['phrase'] = [
+            '#title' => 'Phrase to be encrypted',
+            '#type' => 'textfield',
+            //'#description' => t('something descriptive here'),
+        ];
+
+        $form['submit'] = [
+            '#type' => 'submit',
+            '#value' => 'Encrypt'
+        ];
+
+        return $form;
     }
