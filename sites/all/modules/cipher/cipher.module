@@ -68,9 +68,11 @@
         $phrase = str_split($phrase);
         $output = '';
         foreach($phrase as $letter){
-            // if($letter){
+            if(preg_match("/[a-z]/",$letter)){
                 $output .= $alphabet[abs(array_search($letter, $alphabet) + $shift) % 25];
-            // }
+            } else {
+                $output .= $letter;
+            }
         }
 
         $_SESSION['output'] = $output;
