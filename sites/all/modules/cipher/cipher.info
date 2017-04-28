@@ -1,0 +1,5 @@
+name = Cipher
+description = A shift cipher form.
+package = Cipher Project
+core = 7.x
+files[] = cipher.module
