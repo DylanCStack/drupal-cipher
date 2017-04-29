@@ -9,7 +9,7 @@ _To view and use this application:_
 * It is necessary to download and install MAMP to use this application
     * Go to [mamp.info] (https://www.mamp.info/en/downloads/) to download MAMP for free. Set your Apache port to 8888 and mySQL port to 8889, and launch the server from the project directory.
 * Clone this git repository: https://github.com/DylanCStack/drupal-cipher
-* Inside of the **_db-backup_** folder, unzip the **cipher.sql.zip_** file
+* Inside of the **_db-backup_** folder, unzip the **_cipher.sql.zip_** file
 * Open MAMP (or equivalent) and click on preferences/ports.
     * Make sure that the Apache port number is set to 8888 and the MySQL port number is set to 8889
     * Click start servers.
