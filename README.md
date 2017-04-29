@@ -15,7 +15,7 @@ _To view and use this application:_
     * Click start servers.
 * Type **_localhost:8888/phpmyadmin_** into your web browser
     * Click the _Import_ tab on the nav bar
-    * Click _Choose File_ and navigate to the unzipped **cipher.sql_**
+    * Click _Choose File_ and navigate to the unzipped **_cipher.sql_**
     * click _GO_
 * Type **_localhost:8888_** into your web browser
 * The application will load and be ready to use!
